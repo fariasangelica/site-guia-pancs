@@ -62,3 +62,9 @@ Acesse [http://localhost:3000](http://localhost:3000).
 - [shadcn/ui](https://ui.shadcn.com/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Lucide React](https://lucide.dev/)
+
+## Referências
+
+- Diagrama de metodologia adaptado de Robson Camargo, "Diagrama de rede na gestão de projetos".
+- Textos de plantas e segurança baseados em pesquisa de PANCs e fontes de culinária alternativa.
+- Capturas de tela e imagens apresentadas no projeto são geradas a partir do sistema em desenvolvimento.

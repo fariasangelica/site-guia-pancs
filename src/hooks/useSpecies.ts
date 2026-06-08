@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { initialEspecies } from "@/data/species";
-import { CURADORIA_EMAILS, EMPTY_FORM, PENDING_STATUSES } from "@/data/constants";
+import { EMPTY_FORM, PENDING_STATUSES } from "@/data/constants";
 import { Species, SpeciesFormData, SpeciesStatus } from "@/types/species";
 
 const STORAGE_KEY = "portal-plantas-que-nutrem-species-v1";
@@ -106,6 +106,7 @@ export function useSpecies() {
       destaque: false,
       status,
       fonte: form.fonte.trim(),
+      fonteImagem: form.fonteImagem.trim() || undefined,
       imageUrl: form.imageUrl.trim(),
     };
   };
@@ -187,6 +188,7 @@ export function useSpecies() {
       cuidado: item.cuidado,
       relevancia: item.relevancia,
       fonte: item.fonte ?? "",
+      fonteImagem: item.fonteImagem ?? "",
       imageUrl: item.imageUrl ?? "",
     });
     setMensagem(`Editando: ${item.nome}`);
@@ -215,7 +217,7 @@ export function useSpecies() {
     setMensagem("Destaque atualizado com sucesso.");
   };
 
-  const handleSendForAnalysis = () => {
+  const handleSendForAnalysis = async () => {
     if (!validateForm()) {
       setMensagem("Preencha todos os campos obrigatórios antes de enviar para análise.");
       return;
@@ -224,32 +226,48 @@ export function useSpecies() {
     const payload = buildSpeciesObject("enviado");
     upsertSpecies(payload);
 
-    const subject = encodeURIComponent(
-      `Análise de nova espécie PANC: ${payload.nome}`
-    );
-    const body = encodeURIComponent(
-      `Solicitação de análise de nova espécie para o catálogo público.\n\n` +
-        `Nome popular: ${payload.nome}\n` +
-        `Nome científico: ${payload.nomeCientifico}\n` +
-        `Família botânica: ${payload.familia}\n` +
-        `Classe: ${payload.classe}\n` +
-        `Partes comestíveis: ${payload.partes.join(", ")}\n` +
-        `Uso culinário: ${payload.uso}\n` +
-        `Cuidados e segurança: ${payload.cuidado}\n` +
-        `Justificativa / relevância: ${payload.relevancia}\n` +
-        `Fonte principal: ${payload.fonte}\n` +
-        `Imagem: ${payload.imageUrl || "Não informada"}\n\n` +
-        `Após retorno positivo da curadoria de conteúdo, a espécie poderá seguir para publicação.`
-    );
+    setMensagem("Enviando espécie para análise...");
 
-    if (typeof window !== "undefined") {
-      window.location.href = `mailto:${CURADORIA_EMAILS.join(",")}?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch("/api/species/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: payload.nome,
+          nomeCientifico: payload.nomeCientifico,
+          familia: payload.familia,
+          classe: payload.classe,
+          partes: payload.partes,
+          uso: payload.uso,
+          cuidado: payload.cuidado,
+          relevancia: payload.relevancia,
+          fonte: payload.fonte,
+          fonteImagem: payload.fonteImagem,
+          imageUrl: payload.imageUrl,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => ({}))) as {
+          error?: string;
+        };
+        setMensagem(
+          `Não foi possível enviar o e-mail para a curadoria: ${
+            data.error || "erro desconhecido"
+          }. A espécie foi salva como pendente.`
+        );
+        return;
+      }
+
+      setMensagem(
+        "Espécie enviada para análise. A curadoria de conteúdo foi notificada por e-mail."
+      );
+      resetForm();
+    } catch {
+      setMensagem(
+        "Falha de conexão ao enviar o e-mail para a curadoria. A espécie foi salva como pendente; tente novamente."
+      );
     }
-
-    setMensagem(
-      "Espécie enviada para análise. O cliente de e-mail foi acionado para envio à curadoria de conteúdo."
-    );
-    resetForm();
   };
 
   return {

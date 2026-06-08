@@ -19,6 +19,7 @@ export interface Species {
   destaque: boolean;
   status: SpeciesStatus;
   fonte: string;
+  fonteImagem?: string;
   imageUrl: string;
 }
 
@@ -32,5 +33,6 @@ export interface SpeciesFormData {
   cuidado: string;
   relevancia: string;
   fonte: string;
+  fonteImagem: string;
   imageUrl: string;
 }

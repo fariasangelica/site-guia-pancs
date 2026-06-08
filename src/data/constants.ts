@@ -30,5 +30,6 @@ export const EMPTY_FORM: SpeciesFormData = {
   cuidado: "",
   relevancia: "",
   fonte: "",
+  fonteImagem: "",
   imageUrl: "",
 };

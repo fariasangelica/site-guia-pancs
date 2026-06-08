@@ -155,17 +155,31 @@ export function AdminForm({
         />
       </div>
 
-      <div>
-        <label htmlFor="fonte-principal" className="text-sm font-medium text-green-950">
-          Fonte principal
-        </label>
-        <Input
-          id="fonte-principal"
-          value={form.fonte}
-          onChange={(e) => onFieldChange("fonte", e.target.value)}
-          className="mt-1 rounded-xl bg-white"
-          placeholder="Ex.: publicação técnica, artigo, instituição responsável"
-        />
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="fonte-texto" className="text-sm font-medium text-green-950">
+            Fonte do texto
+          </label>
+          <Input
+            id="fonte-texto"
+            value={form.fonte}
+            onChange={(e) => onFieldChange("fonte", e.target.value)}
+            className="mt-1 rounded-xl bg-white"
+            placeholder="Ex.: publicação técnica, artigo, instituição responsável"
+          />
+        </div>
+        <div>
+          <label htmlFor="fonte-imagem" className="text-sm font-medium text-green-950">
+            Fonte da imagem
+          </label>
+          <Input
+            id="fonte-imagem"
+            value={form.fonteImagem}
+            onChange={(e) => onFieldChange("fonteImagem", e.target.value)}
+            className="mt-1 rounded-xl bg-white"
+            placeholder="Ex.: Wikimedia Commons, foto própria, site X"
+          />
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">

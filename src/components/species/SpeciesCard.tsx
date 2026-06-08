@@ -95,6 +95,23 @@ export function SpeciesCard({ item }: SpeciesCardProps) {
           </div>
         </div>
 
+        <div className="mt-3 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 text-[11px] text-slate-500">
+          {item.fonte ? (
+            <p className="leading-5">
+              <span className="font-semibold text-slate-700">Fonte do texto:</span> {item.fonte}
+            </p>
+          ) : null}
+          {item.fonteImagem ? (
+            <p className="leading-5">
+              <span className="font-semibold text-slate-700">Fonte da imagem:</span> {item.fonteImagem}
+            </p>
+          ) : item.imageUrl?.includes("commons.wikimedia.org") ? (
+            <p className="leading-5">
+              <span className="font-semibold text-slate-700">Fonte da imagem:</span> Wikimedia Commons
+            </p>
+          ) : null}
+        </div>
+
       </div>
     </article>
   );
