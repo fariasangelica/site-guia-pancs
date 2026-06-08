@@ -115,12 +115,22 @@ export async function POST(request: Request) {
   }
 
   const from = process.env.EMAIL_FROM || "onboarding@resend.dev";
+  const isTestMode = from.endsWith("@resend.dev");
+
+  // No modo teste (onboarding@resend.dev), o Resend so entrega para o
+  // e-mail dono da conta. Em producao, com dominio verificado, envia para todos.
+  const recipients = isTestMode
+    ? [process.env.RESEND_ACCOUNT_EMAIL?.trim() || CURADORIA_EMAILS[0]]
+    : process.env.NOTIFICATION_EMAILS
+      ? process.env.NOTIFICATION_EMAILS.split(",").map((e) => e.trim()).filter(Boolean)
+      : CURADORIA_EMAILS;
+
   const resend = new Resend(apiKey);
 
   try {
     const { error } = await resend.emails.send({
       from,
-      to: CURADORIA_EMAILS,
+      to: recipients,
       subject: `Analise de nova especie PANC: ${nome}`,
       html,
       attachments: attachments.length > 0 ? attachments : undefined,
