@@ -167,6 +167,63 @@ O projeto está hospedado na [Vercel](https://vercel.com). Para configurar seu p
 
 ---
 
+## Dados levantados
+
+### Estrutura de dados por espécie
+
+Cada espécie catalogada possui os seguintes campos:
+
+| Campo | Descrição |
+|-------|-----------|
+| Nome popular | Nome pelo qual a planta é conhecida popularmente |
+| Nome científico | Nomenclatura binomial (gênero e espécie) |
+| Família botânica | Classificação taxonômica da família |
+| Categoria | Grupo alimentar (Folhosas, Flores comestíveis, Raízes e rizomas, Frutos) |
+| Partes comestíveis | Quais partes da planta podem ser consumidas |
+| Uso culinário | Formas de preparo e receitas |
+| Cuidados de segurança | Alertas e instruções para consumo seguro |
+| Relevância | Contexto cultural, nutricional ou ambiental da espécie |
+| Fonte | Referência da informação |
+
+### Espécies catalogadas (12 espécies / 4 categorias)
+
+**Folhosas**
+
+| Espécie | Nome científico | Família | Destaque |
+|---------|----------------|---------|----------|
+| Ora-pro-nóbis | *Pereskia aculeata* | Cactaceae | ⭐ |
+| Taioba | *Xanthosoma taioba* | Araceae | ⭐ |
+| Caruru | *Amaranthus viridis* | Amaranthaceae | ⭐ |
+| Bertalha | *Basella alba* | Basellaceae | — |
+| Serralha | *Sonchus oleraceus* | Asteraceae | — |
+| Major-gomes | *Talinum paniculatum* | Talinaceae | — |
+| Beldroega | *Portulaca oleracea* | Portulacaceae | — |
+| Trapoeraba | *Commelina benghalensis* | Commelinaceae | — |
+| Azedinha | *Oxalis triangularis* | Oxalidaceae | — |
+| Tansagem | *Plantago major* | Plantaginaceae | — |
+
+**Flores comestíveis**
+
+| Espécie | Nome científico | Família |
+|---------|----------------|---------|
+| Capuchinha | *Tropaeolum majus* | Tropaeolaceae |
+
+**Raízes e rizomas**
+
+| Espécie | Nome científico | Família |
+|---------|----------------|---------|
+| Araruta | *Maranta arundinacea* | Marantaceae |
+
+### O que os dados revelam
+
+- **Diversidade botânica:** as 12 espécies pertencem a 11 famílias botânicas diferentes, mostrando a amplitude das PANCs
+- **Predominância de folhosas:** 10 das 12 espécies são folhosas, refletindo a maior facilidade de cultivo e acesso urbano
+- **Presença regional:** espécies como taioba (tradição mineira) e caruru (culinária afro-brasileira baiana) mostram o enraizamento cultural das PANCs
+- **Risco de confusão:** todas as espécies têm cuidados de segurança documentados — identificação correta e higienização são pontos críticos para o consumo seguro
+- **Alto potencial nutricional:** espécies como beldroega (ômega-3), ora-pro-nóbis (proteína vegetal) e caruru (ferro e cálcio) são nutricionalmente expressivas
+
+---
+
 ## Fluxo de aprovação de espécies
 
 ```
