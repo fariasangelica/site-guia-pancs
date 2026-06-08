@@ -185,4 +185,4 @@ Os status possíveis de uma espécie são:
 
 Desenvolvido por **Angélica Farias de Oliveira** como projeto de extensão universitária.
 
-📧 panc.limpandotrilha@gmail.com
+📧 angelicafarioliveira@gmail.com
