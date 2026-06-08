@@ -36,6 +36,12 @@ function row(label: string, value: string): string {
     </tr>`;
 }
 
+function parseEmailAddress(raw?: string): string {
+  const trimmed = (raw || "").trim().replace(/^["']|["']$/g, "");
+  const match = trimmed.match(/<([^>]+)>/);
+  return (match ? match[1] : trimmed).trim();
+}
+
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -114,16 +120,10 @@ export async function POST(request: Request) {
     }
   }
 
-  const from = process.env.EMAIL_FROM || "onboarding@resend.dev";
-  const isTestMode = from.endsWith("@resend.dev");
-
-  // No modo teste (onboarding@resend.dev), o Resend so entrega para o
-  // e-mail dono da conta. Em producao, com dominio verificado, envia para todos.
-  const recipients = isTestMode
-    ? [process.env.RESEND_ACCOUNT_EMAIL?.trim() || CURADORIA_EMAILS[0]]
-    : process.env.NOTIFICATION_EMAILS
-      ? process.env.NOTIFICATION_EMAILS.split(",").map((e) => e.trim()).filter(Boolean)
-      : CURADORIA_EMAILS;
+  const from = parseEmailAddress(
+    process.env.EMAIL_FROM || "onboarding@resend.dev"
+  );
+  const recipients = CURADORIA_EMAILS;
 
   const resend = new Resend(apiKey);
 

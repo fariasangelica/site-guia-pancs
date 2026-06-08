@@ -7,10 +7,7 @@ export const SPECIES_CLASSES = [
   "Frutos",
 ] as const;
 
-export const CURADORIA_EMAILS = [
-  "angelicafarioliveira@gmail.com",
-  "panc.limpandotrilha@gmail.com",
-];
+export const CURADORIA_EMAILS = ["angelicafarioliveira@gmail.com"];
 
 export const PENDING_STATUSES = [
   "rascunho",
