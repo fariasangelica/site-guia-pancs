@@ -25,6 +25,25 @@ O sistema permite que qualquer pessoa envie uma nova espécie para análise. Ant
 
 ---
 
+## Captura de telas (evidências)
+
+https://github.com/user-attachments/assets/33c717cf-3224-494e-920a-f4e40bfa7533
+
+https://github.com/user-attachments/assets/21b63a33-a300-48ff-98a2-05201a4a29f9
+
+https://github.com/user-attachments/assets/ad3f9a56-ca0a-4fd4-b23f-44824d9e9d77
+
+https://github.com/user-attachments/assets/14a318d8-d91f-4e11-8d69-fc1cbe303055
+
+https://github.com/user-attachments/assets/f708fc80-d4dd-41e1-8d65-abab006b0857
+
+Evidência que a solicitação de analise de uma nova especie é enviada para a curadoria do projeto
+
+<img width="210" height="400" alt="Image" src="https://github.com/user-attachments/assets/ea8fc6a9-7806-4c0a-94a8-688354560c26" />
+
+
+---
+
 ## Tecnologias utilizadas
 
 | Tecnologia | Uso |
